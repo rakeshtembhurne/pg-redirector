@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "target": "ES2020", // Changed from ESNext to ES2020
+    "module": "CommonJS", // Changed from ESNext to CommonJS
+    "moduleResolution": "Node",
     "strict": true,
     "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
+    "outDir": "build" // Added outDir to specify build directory
   }
 }
+
