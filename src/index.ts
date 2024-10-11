@@ -13,6 +13,9 @@ app.get("/", (c) => {
 
   const html = `
       <html>
+        <head>
+          <meta name="referrer" content="origin-when-cross-origin">
+        </head>
         <script>
             window.onload = () => {
                 console.log(window.location);
