@@ -4,11 +4,17 @@ import { Hono } from "hono";
 const app = new Hono();
 
 app.get("/", (c) => {
-  // const httpUrl = "http://pg-redirector.pinnacle.in/?url=";
-  // const httpsUrl = "https://pg-redirector.pinnacle.in/?url=";
-  // const url = c.req.url.replace(httpUrl, "").replace(httpsUrl, "");
-  // if (!url) {
-  //   return c.text("No url query parameter provided", 400);
+  // Uncomment when you need to see URLS
+  // try {
+  //   const httpUrl = "http://pg-redirector.pinnacle.in/?url=";
+  //   const httpsUrl = "https://pg-redirector.pinnacle.in/?url=";
+  //   const url = c.req.url.replace(httpUrl, "").replace(httpsUrl, "");
+  //   if (!url) {
+  //     return c.html("No url query parameter provided", 400);
+  //   }
+  //   console.log("URL", url, new Date());
+  // } catch (error) {
+  //   console.log("Error while parsing url");
   // }
 
   const html = `
