@@ -5,38 +5,37 @@ const app = new Hono();
 
 app.get("/", (c) => {
   // Uncomment when you need to see URLS
-  // try {
-  //   const httpUrl = "http://pg-redirector.pinnacle.in/?url=";
-  //   const httpsUrl = "https://pg-redirector.pinnacle.in/?url=";
-  //   const url = c.req.url.replace(httpUrl, "").replace(httpsUrl, "");
-  //   if (!url) {
-  //     return c.html("No url query parameter provided", 400);
-  //   }
-  //   console.log("URL", url, new Date());
-  // } catch (error) {
-  //   console.log("Error while parsing url");
-  // }
+  try {
+    const httpUrl = "http://pg-redirector.pinnacle.in/?url=";
+    const httpsUrl = "https://pg-redirector.pinnacle.in/?url=";
+    const url = c.req.url.replace(httpUrl, "").replace(httpsUrl, "");
+    if (!url) {
+      return c.html("No url query parameter provided", 400);
+    }
+    console.log("URL", url, new Date());
+  } catch (error) {
+    console.log("Error while parsing url");
+    return c.html("Invalid URL Provided", 400);
+  }
 
-  const html = `
-      <html>
-        <head>
-          <meta name="referrer" content="origin-when-cross-origin">
-        </head>
-        <script>
-            window.onload = () => {
-                console.log(window.location);
+  const html = `<html>
+      <head>
+        <meta name="referrer" content="origin-when-cross-origin">
+      </head>
+      <script>
+          window.onload = () => {
+              console.log(window.location);
 
-                const newUrl = window.location.search.replace('?url=','');
+              const newUrl = window.location.search.replace('?url=','');
 
-                if (newUrl.includes('https://')) {
-                  window.location.href = newUrl;
-                } else {
-                  document.body.innerHtml = "OK"
-                }
-            };
-        </script>
-    </html>
-          `;
+              if (newUrl.includes('https://')) {
+                window.location.href = newUrl;
+              } else {
+                document.body.innerHtml = "OK"
+              }
+          };
+      </script>
+  </html>`;
   return c.html(html);
 
   // return c.redirect(url, 302);
